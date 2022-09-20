@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Todo, TodoModel } from './components/todo/todo';
 import { supabase } from './supabaseClient';
 import { PostgrestError } from '@supabase/supabase-js';
+import { AddTodo } from './components/add-todo/AddTodo';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -41,7 +42,10 @@ function App() {
       {loading && <p>loading...</p>}
       {error && <p>{error.message}</p>}
       {todos.length > 0 &&
-        todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
+        todos.map((todo) => {
+          return <Todo key={todo.id} todo={todo} />;
+        })}
+      <AddTodo />
     </div>
   );
 }
